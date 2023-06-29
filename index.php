@@ -28,7 +28,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header class="bg-primary w-100 d-flex justify-content-center align-items-center" style="min-height: 10vh">
+    <!-- <header class="bg-primary w-100 d-flex justify-content-center align-items-center" style="min-height: 10vh">
         <div class="row align-items-center h-100 w-100">
             <div class="col px-0 d-flex justify-content-center align-items-center">
                 <a href="?controller=pages&action=home" class="text-white">HOME</a>
@@ -40,16 +40,17 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 <a href="?controller=pages&action=checking" class="text-white">CHECKING</a>
             </div>
         </div>
-    </header>
-    <div class="container-fluid d-flex justify-content-center align-items-center w-100 px-0 py-3 mx-0 my-0" style="min-height: 100vh">
+    </header> -->
+    <div class="container-fluid d-flex justify-content-center align-items-center w-100 px-0 py-3 mx-0 my-0"
+        style="min-height: 80vh;">
         <?php
         require_once("routes.php");
         ?>
     </div>
-    <footer class="bg-danger w-100 d-flex justify-content-center align-items-center">
+    <footer class="bg-danger w-100 d-flex justify-content-center align-items-center" style="min-height: 20vh">
         <div class="row w-100 h-100 my-3">
             <div class="col-12 w-100 px-0 d-flex justify-content-center align-items-center my-1">
-                <h6 class="text-white my-0 text-center">SELF PROJECT : Self Payment Webapp (SPW)</h6>
+                <h6 class="text-white my-0 text-center">SELF PROJECT : Self Payment Website Application (SPWA)</h6>
             </div>
             <div class="col-12 w-100 px-0 d-flex justify-content-center align-items-center my-1">
                 <h6 class="text-white my-0 text-center">Kasetsart University Kamphaeng Saen Campus</h6>
@@ -61,7 +62,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 <h6 class="text-white my-0 text-center">Department of Computer Engineering</h6>
             </div>
             <div class="col-12 w-100 px-0 d-flex justify-content-center align-items-center my-1">
-                <h6 class="text-warning my-0 text-center">Created by Chanakan Sri.</h6>
+                <h6 class="text-warning my-0 text-center">Created by Chanakan Srisarutiporn</h6>
             </div>
         </div>
     </footer>

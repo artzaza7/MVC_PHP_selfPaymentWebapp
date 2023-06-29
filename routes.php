@@ -1,5 +1,5 @@
 <?php
-$controllers = array('pages'=>['home', 'error']);
+$controllers = array('pages'=>['home', 'error', 'register', 'registerCheckPassword']);
 
 function call($controller, $action){
     require_once("controllers/".$controller."_controller.php");
