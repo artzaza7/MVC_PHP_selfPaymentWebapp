@@ -32,6 +32,6 @@
     </div>
     <div
         class="mb-md-3 mb-lg-3 col-sm-12 col-md-12 col-lg-12 justify-content-center align-items-center text-center text-dark">
-        Not registered? <a href="?controller=pages&action=register" class="text-warning">Create an account</a>
+        Not registered? <a href="?controller=pages&action=registerPage" class="text-warning">Create an account</a>
     </div>
 </div>

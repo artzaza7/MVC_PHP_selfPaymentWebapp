@@ -7,26 +7,13 @@
             Please enter info to create account
         </h6>
         <?php
-        if ($status != '') {
-            echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
-            <div>
-            <strong>Error! ' . $status . '.</strong> You should check in on some of those inputs below.
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>';
-        }
-        else if($username == '' || $password == '' || $confirmPassword == ''){
-            echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
-            <div>
-            <strong>Error! Do not have value.</strong> You should check in on some of those inputs below.
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>';
+        if(isset($_POST['submit'])){ // checking for submit by form
+            submitForm($_POST);
         }
         ?>
     </div>
     <!-- Form Action : register -->
-    <form action="" method="GET">
+    <form action="" method="POST">
         <div class="my-2 col-12 justify-content-center align-items-center text-center text-dark">
             <div class="container-fluid px-0 form-floating w-75">
                 <input type="text" class="form-control" id="username" name="username" placeholder="b63XXXXXXXX">
@@ -47,13 +34,39 @@
             </div>
         </div>
         <div class="mt-2 col-12 d-flex justify-content-center">
-            <input type="hidden" name="controller" value="pages">
-            <button type="submit" name="action" value="registerCheckPassword"
+            <button type="submit" name="submit" value="submit"
                 class="py-3 fs-5 w-50 badge rounded-pill bg-success">Register</button>
         </div>
-        <div class="mt-2 col-12 d-flex justify-content-center">
-            <button type="submit" name="action" value="home" class="py-3 fs-5 w-50 badge rounded-pill bg-primary">Go to
-                home</button>
-        </div>
     </form>
+    <div class="mt-2 col-12 d-flex justify-content-center">
+        <a href="?controller=pages&action=home" class="py-3 fs-5 w-50 badge rounded-pill bg-primary">Go to
+            home</a>
+    </div>
 </div>
+
+<?php
+function submitForm($result)
+{
+    print_r($result);
+    $username = $result['username'];
+    $password = $result['password'];
+    $confirmPassword = $result['confirmPassword'];
+    echo "<br> Username : " . $username . "<br> Password : " . $password . "<br> Confirm Password : " . $confirmPassword;
+    if ($username == '' || $password == '' || $confirmPassword == '') {
+        echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
+            <div>
+            <strong>Error! Do not have value.</strong> You should check in on some of those inputs below.
+           </div>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+    }
+    else if($password != $confirmPassword){
+        echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
+            <div>
+            <strong>Error! Something is wrong.</strong> You should check in on some of those inputs below.
+           </div>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+    }
+}
+?>
