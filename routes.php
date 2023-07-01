@@ -1,10 +1,11 @@
 <?php
-$controllers = array('pages'=>['home', 'error', 'registerPage']);
+$controllers = array('pages'=>['home', 'error', 'registerPage', 'register']);
 
 function call($controller, $action){
     require_once("controllers/".$controller."_controller.php");
     switch($controller){
         case "pages":
+            require_once('models/user.php');
             $controller = new PagesController();
             break;
     }

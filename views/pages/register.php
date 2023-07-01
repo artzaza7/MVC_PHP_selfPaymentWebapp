@@ -7,7 +7,18 @@
             Please enter info to create account
         </h6>
         <?php
-        if(isset($_POST['submit'])){ // checking for submit by form
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] == 'duplicate') {
+                echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
+            <div>
+            <strong>Error! Duplicate Username.</strong> You should check in on some of those inputs below.
+           </div>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+            }
+        }
+
+        if (isset($_POST['submit'])) { // checking for submit by form
             submitForm($_POST);
         }
         ?>
@@ -59,14 +70,15 @@ function submitForm($result)
            </div>
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
-    }
-    else if($password != $confirmPassword){
+    } else if ($password != $confirmPassword) {
         echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
             <div>
             <strong>Error! Something is wrong.</strong> You should check in on some of those inputs below.
            </div>
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
+    } else {
+        header("Location: ?controller=pages&action=register&username=" . $username . "&password=" . $password);
     }
 }
 ?>

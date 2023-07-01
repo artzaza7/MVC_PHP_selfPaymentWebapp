@@ -1,10 +1,10 @@
 <?php
 $servername = "localhost";
-$username = "username";
-$password = "";
+$username_database = "root";
+$password_database = "";
 $dbname = "mvc_php_database";
 
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username_database, $password_database);
 
 if($conn->connect_error){
     die("Connection failed : ".$conn->connect_error);

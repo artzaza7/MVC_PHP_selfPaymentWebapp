@@ -4,10 +4,22 @@
             Welcome to Self Payment Website Application
         </h3>
     </div>
-    <div class="col-12 d-flex justify-content-center align-items-center text-center mt-2">
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center mt-2">
         <h3 class="my-0 fw-bold">
             User Login
         </h3>
+        <?php
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] == 'createUserSuccess') {
+                echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-success alert-dismissible fade show" role="alert">
+                <div>
+                <strong>Register Successful.</strong> Thanks for using my application.
+               </div>
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+            }
+        }
+        ?>
     </div>
     <div
         class="my-3 my-md-3 my-lg-3 col-sm-12 col-md-12 col-lg-12 justify-content-center align-items-center text-center text-dark">
