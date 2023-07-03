@@ -19,7 +19,7 @@
         }
 
         if (isset($_POST['submit'])) { // checking for submit by form
-            submitForm($_POST);
+            submitRegisterForm($_POST);
         }
         ?>
     </div>
@@ -56,22 +56,20 @@
 </div>
 
 <?php
-function submitForm($result)
+function submitRegisterForm($result)
 {
-    print_r($result);
     $username = $result['username'];
     $password = $result['password'];
     $confirmPassword = $result['confirmPassword'];
-    echo "<br> Username : " . $username . "<br> Password : " . $password . "<br> Confirm Password : " . $confirmPassword;
     if ($username == '' || $password == '' || $confirmPassword == '') {
-        echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
+        echo '<div class="mt-3 mb-0 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
             <div>
             <strong>Error! Do not have value.</strong> You should check in on some of those inputs below.
            </div>
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
     } else if ($password != $confirmPassword) {
-        echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
+        echo '<div class="mt-3 mb-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
             <div>
             <strong>Error! Something is wrong.</strong> You should check in on some of those inputs below.
            </div>

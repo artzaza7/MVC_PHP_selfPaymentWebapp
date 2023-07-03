@@ -26,5 +26,19 @@ class PagesController
         }
     }
 
+    public function login(){
+        $username = $_GET['username'];
+        $password = $_GET['password'];
+        if(User::hasUser($username, $password)){
+            $user = User::getUserByUsernameAndPassword($username, $password);
+            header("Location: ?controller=users&action=index&userId=".$user->id);
+        }
+        else{
+            header("Location: ?controller=pages&action=home&status=notHasUser");
+        }
+    }
+
+    
+
 }
 ?>

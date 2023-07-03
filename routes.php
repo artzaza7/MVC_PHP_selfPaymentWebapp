@@ -1,5 +1,6 @@
 <?php
-$controllers = array('pages'=>['home', 'error', 'registerPage', 'register']);
+$controllers = array('pages'=>['home', 'error', 'registerPage', 'register', 'login']
+, 'users' => ['index']);
 
 function call($controller, $action){
     require_once("controllers/".$controller."_controller.php");
@@ -7,6 +8,9 @@ function call($controller, $action){
         case "pages":
             require_once('models/user.php');
             $controller = new PagesController();
+            break;
+        case "users":
+            $controller = new UsersController();
             break;
     }
     $controller->{$action}();

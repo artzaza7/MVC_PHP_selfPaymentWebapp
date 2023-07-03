@@ -11,6 +11,36 @@ class User
         $this->username = $username;
         $this->password = $password;
     }
+
+    public static function hasUser($username, $password){
+        require("dbconnection_connect.php");
+        $sql = "SELECT COUNT(*) FROM user WHERE user.username ='".$username."' AND user.password = '".$password."'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        require("dbconnection_close.php");
+
+        $count = $row['COUNT(*)'];
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    public static function getUserByUsernameAndPassword($username, $password)
+    {
+        require("dbconnection_connect.php");
+        $sql = "SELECT * FROM user WHERE user.username ='".$username."' AND user.password = '".$password."'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        require("dbconnection_close.php");
+
+        $rowId = $row['id'];
+        $rowUsername = $row['username'];
+        $rowPassword = $row['password'];
+        
+        return new User($rowId, $rowUsername, $rowPassword);
+    }
     //Create USER INTO Database
     public static function create($username, $password)
     {
@@ -30,7 +60,6 @@ class User
         require("dbconnection_close.php");
 
         $count = $row['COUNT(*)'];
-        echo "COUNT : " . $count;
         if ($count == 0) {
             return false;
         } else {
