@@ -12,9 +12,10 @@ class User
         $this->password = $password;
     }
 
-    public static function hasUser($username, $password){
+    public static function hasUser($username)
+    {
         require("dbconnection_connect.php");
-        $sql = "SELECT COUNT(*) FROM user WHERE user.username ='".$username."' AND user.password = '".$password."'";
+        $sql = "SELECT COUNT(*) FROM user WHERE user.username ='" . $username . "'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         require("dbconnection_close.php");
@@ -25,12 +26,11 @@ class User
         } else {
             return true;
         }
-
     }
-    public static function getUserByUsernameAndPassword($username, $password)
+    public static function getUserByUsername($username)
     {
         require("dbconnection_connect.php");
-        $sql = "SELECT * FROM user WHERE user.username ='".$username."' AND user.password = '".$password."'";
+        $sql = "SELECT * FROM user WHERE user.username ='" . $username . "'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         require("dbconnection_close.php");
@@ -38,14 +38,22 @@ class User
         $rowId = $row['id'];
         $rowUsername = $row['username'];
         $rowPassword = $row['password'];
-        
+
         return new User($rowId, $rowUsername, $rowPassword);
     }
     //Create USER INTO Database
     public static function create($username, $password)
     {
         require("dbconnection_connect.php");
-        $sql = "INSERT INTO user (username, password) values ('$username', '$password')";
+        //Secure Password Using bcrypt
+        //cost (int) - which denotes the algorithmic cost that should be used. Examples of these values can be found on the crypt() page.
+        //กำหนด cost 10 เพื่อให้การเข้ารหัสรวดเร็วยิ่งขึ้น *ตัวเลขยิ่งเยอะ ยิ่งทำงานช้า ซึ่งขึ้นอยู่กับความเร็วของคอมที่เราใช้ครับ เพราะฉะนั้น 10 ก็พอครับ หรือจะลองเพิ่มตัวเลขแล้วรันดูครับ ว่าจะดีเลเยอะไหม!!
+        $options = [
+            'cost' => 10,
+        ];
+        $passwordHash = password_hash($password,  PASSWORD_BCRYPT, $options);
+
+        $sql = "INSERT INTO user (username, password) values ('$username', '$passwordHash')";
         $result = $conn->query($sql);
         require("dbconnection_close.php");
         return "Create User Success";
@@ -67,4 +75,3 @@ class User
         }
     }
 }
-?>

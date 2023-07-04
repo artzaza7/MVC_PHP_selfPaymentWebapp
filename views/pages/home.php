@@ -27,7 +27,16 @@
             if ($_GET['status'] == 'notHasUser' && !$nullValue) {
                 echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
                 <div>
-                <strong>Do not have this username</strong> Please Check you inputs.
+                <strong>Do not have this username.</strong> Please Check you inputs.
+               </div>
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+            }
+
+            if ($_GET['status'] == 'passwordIsInvalid' && !$nullValue) {
+                echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
+                <div>
+                <strong>Password is invalid.</strong> Please Check you inputs.
                </div>
                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';

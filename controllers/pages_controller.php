@@ -26,19 +26,29 @@ class PagesController
         }
     }
 
-    public function login(){
+    public function login()
+    {
         $username = $_GET['username'];
         $password = $_GET['password'];
-        if(User::hasUser($username, $password)){
-            $user = User::getUserByUsernameAndPassword($username, $password);
-            header("Location: ?controller=users&action=index&userId=".$user->id);
-        }
-        else{
+        if (User::hasUser($username)) {
+            $user = User::getUserByUsername($username);
+            $passwordHash = $user->password;
+            $validPassword = password_verify($password, $passwordHash);
+            if ($validPassword) {
+                function generateRandomSalt($length = 10)
+                {
+                    return bin2hex(random_bytes($length));
+                }
+
+                $salt = generateRandomSalt();
+                $encrypted_id = base64_encode($user->id . $salt);
+                $keyword = generateRandomSalt();
+                header("Location: ?controller=users&action=index&userId=" . $encrypted_id . $keyword . $salt . "&key=" . $keyword);
+            } else {
+                header("Location: ?controller=pages&action=home&status=passwordIsInvalid");
+            }
+        } else {
             header("Location: ?controller=pages&action=home&status=notHasUser");
         }
     }
-
-    
-
 }
-?>

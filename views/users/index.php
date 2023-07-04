@@ -2,8 +2,7 @@
     <div class="col d-flex flex-column justify-content-center align-items-center">
         <div>
             <?php
-                $id = $_GET['userId'];
-                echo "<p>INDEX OF USER_ID : " . $id . "</p>"
+            echo "<p>INDEX OF USER_ID : " . $decrypted_id . "</p>"
             ?>
         </div>
         <div>
