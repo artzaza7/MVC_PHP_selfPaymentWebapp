@@ -42,8 +42,7 @@ class PagesController
 
                 $salt = generateRandomSalt();
                 $encrypted_id = base64_encode($user->id . $salt);
-                $keyword = generateRandomSalt();
-                header("Location: ?controller=users&action=index&userId=" . $encrypted_id . $keyword . $salt . "&key=" . $keyword);
+                header("Location: ?controller=users&action=index&userId=" . $encrypted_id . "." . $salt);
             } else {
                 header("Location: ?controller=pages&action=home&status=passwordIsInvalid");
             }
