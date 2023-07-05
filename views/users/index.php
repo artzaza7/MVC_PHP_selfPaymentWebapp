@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col d-flex flex-column justify-content-center align-items-center">
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center w-100 mx-0 my-0 px-0 py-0">
         <div>
             <?php
             echo "<p>INDEX OF USER_ID : " . $decrypted_id . "</p>"

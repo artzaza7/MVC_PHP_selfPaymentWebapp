@@ -76,7 +76,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     <footer class="bg-danger w-100 d-flex justify-content-center align-items-center" style="min-height: 20vh">
         <div class="row w-100 h-100 my-3">
             <div class="col-12 w-100 px-0 d-flex justify-content-center align-items-center my-1">
-                <h6 class="text-white my-0 text-center">SELF PROJECT : Self Payment Website Application (SPWA)</h6>
+                <h6 class="text-white my-0 text-center">SELF PROJECT : Self Income & Expenses Website Application (SIEWA)</h6>
             </div>
             <div class="col-12 w-100 px-0 d-flex justify-content-center align-items-center my-1">
                 <h6 class="text-white my-0 text-center">Kasetsart University Kamphaeng Saen Campus</h6>

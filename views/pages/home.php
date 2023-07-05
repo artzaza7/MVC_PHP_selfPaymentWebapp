@@ -1,7 +1,7 @@
 <div class="row justify-content-center align-items-center py-3 w-75">
     <div class="col-12 d-flex justify-content-center align-items-center text-center">
         <h3 class="my-0 fw-bolder">
-            Welcome to Self Payment Website Application
+            Welcome to Self Income & Expenses Website Application
         </h3>
     </div>
     <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center mt-2">
