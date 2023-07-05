@@ -21,6 +21,7 @@ class UsersController
             $decrypted_id_raw = base64_decode($encrypted_id);
             $decrypted_id = preg_replace(sprintf('/%s/', $salt), '', $decrypted_id_raw);
             $type_expenses_list = Type_expenses::getAllTypeExpenses();
+            $expenses_typeExpenses_list = ExpensesType_Expense::getExpensesByUserId($decrypted_id);
             require_once('views/users/index.php');
         }
     }
@@ -32,6 +33,7 @@ class UsersController
         $token = $_GET['token'];
         Expenses::create($money, $user_id, $type_expenses_id);
         $decrypted_id = $user_id;
-        require_once('views/users/index.php');
+        $expenses_typeExpenses_list = ExpensesType_Expense::getExpensesByUserId($decrypted_id);
+        header("Location: ?controller=users&action=index&userId=" . $token . "&status=Create Expenses Success");
     }
 }

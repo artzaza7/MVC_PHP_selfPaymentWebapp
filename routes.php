@@ -13,6 +13,7 @@ function call($controller, $action){
             require_once('models/user.php');
             require_once('models/type_expenses.php');
             require_once('models/expenses.php');
+            require_once('models/expensesType_expenses.php');
             $controller = new UsersController();
             break;
     }

@@ -3,8 +3,6 @@
         <div>
             <?php
             echo "<p class='my-0'>INDEX OF USER_ID : " . $decrypted_id . "</p>";
-            echo "<p class='my-0'>user_id_string : " . $user_id_string . "</p>";
-
             $nullValue = false;
             if (isset($_POST['submit'])) { // checking for submit by form
                 submitFormCreateExpenses($_POST, $decrypted_id, $user_id_string);
@@ -56,6 +54,40 @@
             </div>
         </form>
     </div>
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center w-100 mx-0 my-0 px-0 py-0 w-100">
+        <div class="card w-100">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ลำดับ</th>
+                                <th scope="col">จำนวนเงิน</th>
+                                <th scope="col">ประเภทการใช้จ่าย</th>
+                                <th scope="col">วัน</th>
+                                <th scope="col">เวลา</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $index = 1;
+                            foreach ($expenses_typeExpenses_list as $expenses_typeExpenses) {
+                                echo "<tr>";
+                                echo "<th scope='row'>".$index."</th>";
+                                echo "<td>".$expenses_typeExpenses->money."</td>";
+                                echo "<td>".$expenses_typeExpenses->name."</td>";
+                                echo "<td>".$expenses_typeExpenses->date."</td>";
+                                echo "<td>".$expenses_typeExpenses->time."</td>";
+                                echo "</tr>";
+                                $index++;
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php
@@ -71,7 +103,7 @@ function submitFormCreateExpenses($result, $userId, $token)
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
     } else {
-        header("Location: ?controller=users&action=createExpenses&money=".$money."&user_id=".$userId."&type_expenses_id=".$typeExpensesId."&token=".$token);
+        header("Location: ?controller=users&action=createExpenses&money=" . $money . "&user_id=" . $userId . "&type_expenses_id=" . $typeExpensesId . "&token=" . $token);
     }
 }
 ?>
