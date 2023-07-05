@@ -12,7 +12,22 @@ class User
         $this->password = $password;
     }
 
-    public static function hasUser($username)
+    public static function hasUserById($id)
+    {
+        require("dbconnection_connect.php");
+        $sql = "SELECT COUNT(*) FROM user WHERE user.id ='" . $id . "'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        require("dbconnection_close.php");
+
+        $count = $row['COUNT(*)'];
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public static function hasUserByUsername($username)
     {
         require("dbconnection_connect.php");
         $sql = "SELECT COUNT(*) FROM user WHERE user.username ='" . $username . "'";
@@ -51,7 +66,7 @@ class User
         $options = [
             'cost' => 10,
         ];
-        $passwordHash = password_hash($password,  PASSWORD_BCRYPT, $options);
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT, $options);
 
         $sql = "INSERT INTO user (username, password) values ('$username', '$passwordHash')";
         $result = $conn->query($sql);

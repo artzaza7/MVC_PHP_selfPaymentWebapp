@@ -30,7 +30,7 @@ class PagesController
     {
         $username = $_GET['username'];
         $password = $_GET['password'];
-        if (User::hasUser($username)) {
+        if (User::hasUserByUsername($username)) {
             $user = User::getUserByUsername($username);
             $passwordHash = $user->password;
             $validPassword = password_verify($password, $passwordHash);
