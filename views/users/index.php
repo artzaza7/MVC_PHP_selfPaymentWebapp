@@ -2,15 +2,16 @@
     <div class="col-12 d-flex flex-column justify-content-center align-items-center w-100 mx-0 my-0 px-0 py-0">
         <div>
             <?php
+            echo "<p class='my-0'>SESSION : " . $_SESSION['encrypted_id'] . "</p>";
             echo "<p class='my-0'>INDEX OF USER_ID : " . $decrypted_id . "</p>";
             $nullValue = false;
             if (isset($_POST['submit'])) { // checking for submit by form
-                submitFormCreateExpenses($_POST, $decrypted_id, $user_id_string);
+                submitFormCreateExpenses($_POST, $decrypted_id);
                 $nullValue = true;
             }
 
-            if (isset($_GET['status'])) {
-                if ($_GET['status'] == 'Create Expenses Success' && !$nullValue) {
+            if (isset($_SESSION['status'])) {
+                if ($_SESSION['status'] == 'Create Expenses Success' && !$nullValue) {
                     echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-success alert-dismissible fade show" role="alert">
                     <div>
                     <strong>Create Expenses Successful.</strong> Thanks for using my application.
@@ -18,6 +19,7 @@
                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
                 }
+                unset($_SESSION['status']);
             }
             ?>
         </div>
@@ -91,7 +93,7 @@
 </div>
 
 <?php
-function submitFormCreateExpenses($result, $userId, $token)
+function submitFormCreateExpenses($result, $userId)
 {
     $money = $result['money'];
     $typeExpensesId = $result['typeExpensesId'];
@@ -103,7 +105,10 @@ function submitFormCreateExpenses($result, $userId, $token)
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
     } else {
-        header("Location: ?controller=users&action=createExpenses&money=" . $money . "&user_id=" . $userId . "&type_expenses_id=" . $typeExpensesId . "&token=" . $token);
+        $_SESSION['money'] = $money;
+        $_SESSION['typeExpensesId'] = $typeExpensesId;
+        $_SESSION['userId'] = $userId;
+        header("Location: ?controller=users&action=createExpenses");
     }
 }
 ?>

@@ -1,3 +1,7 @@
+<?php
+    unset($_SESSION['encrypted_id']);
+?>
+
 <div class="row justify-content-center align-items-center py-3 w-75">
     <div class="col-12 d-flex justify-content-center align-items-center text-center">
         <h3 class="my-0 fw-bolder">
@@ -15,8 +19,8 @@
             $nullValue = true;
         }
 
-        if (isset($_GET['status'])) {
-            if ($_GET['status'] == 'createUserSuccess' && !$nullValue) {
+        if (isset($_SESSION['status'])) {
+            if ($_SESSION['status'] == 'createUserSuccess' && !$nullValue) {
                 echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-success alert-dismissible fade show" role="alert">
                 <div>
                 <strong>Register Successful.</strong> Thanks for using my application.
@@ -24,7 +28,7 @@
                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
             }
-            if ($_GET['status'] == 'notHasUser' && !$nullValue) {
+            if ($_SESSION['status'] == 'notHasUser' && !$nullValue) {
                 echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
                 <div>
                 <strong>Do not have this username.</strong> Please Check you inputs.
@@ -33,7 +37,7 @@
               </div>';
             }
 
-            if ($_GET['status'] == 'passwordIsInvalid' && !$nullValue) {
+            if ($_SESSION['status'] == 'passwordIsInvalid' && !$nullValue) {
                 echo '<div class="my-2 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
                 <div>
                 <strong>Password is invalid.</strong> Please Check you inputs.
@@ -41,6 +45,8 @@
                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
             }
+
+            unset($_SESSION['status']);
         }
         ?>
     </div>
@@ -65,7 +71,7 @@
                     LOGIN
                 </button> -->
                 <button type="submit" name="submit" value="submit"
-                class="py-3 fs-5 w-50 badge rounded-pill bg-success">LOGIN</button>
+                    class="py-3 fs-5 w-50 badge rounded-pill bg-success">LOGIN</button>
             </div>
         </div>
     </form>
@@ -76,18 +82,18 @@
 </div>
 
 <?php
-function submitFormLogin($result){
+function submitFormLogin($result)
+{
     $username = $result['username'];
     $password = $result['password'];
-    if ($username == '' || $password == ''){
+    if ($username == '' || $password == '') {
         echo '<div class="mt-2 mb-0 d-flex justify-content-center align-items-center text-center alert alert-warning alert-dismissible fade show" role="alert">
             <div>
             <strong>Error! Do not have value.</strong> You should check in on some of those inputs below.
            </div>
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
-    }
-    else{
+    } else {
         header("Location: ?controller=pages&action=login&username=" . $username . "&password=" . $password);
     }
 }

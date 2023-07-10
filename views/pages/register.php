@@ -7,8 +7,8 @@
             Please enter info to create account
         </h6>
         <?php
-        if (isset($_GET['status'])) {
-            if ($_GET['status'] == 'duplicate') {
+        if (isset($_SESSION['status'])) {
+            if ($_SESSION['status'] == 'duplicate') {
                 echo '<div class="my-0 d-flex justify-content-center align-items-center text-center alert alert-danger alert-dismissible fade show" role="alert">
             <div>
             <strong>Error! Duplicate Username.</strong> You should check in on some of those inputs below.
@@ -16,6 +16,7 @@
            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
             }
+            unset($_SESSION['status']);
         }
 
         if (isset($_POST['submit'])) { // checking for submit by form

@@ -20,9 +20,11 @@ class PagesController
         $password = $_GET['password'];
         if (!User::duplicate($username)) { // Checking duplicate USER
             User::create($username, $password);
-            header("Location: ?controller=pages&action=home&status=createUserSuccess");
+            $_SESSION['status'] = 'createUserSuccess';
+            header("Location: ?controller=pages&action=home");
         } else {
-            header("Location: ?controller=pages&action=registerPage&status=duplicate");
+            $_SESSION['status'] = 'duplicate';
+            header("Location: ?controller=pages&action=registerPage");
         }
     }
 
@@ -42,12 +44,15 @@ class PagesController
 
                 $salt = generateRandomSalt();
                 $encrypted_id = base64_encode($user->id . $salt);
-                header("Location: ?controller=users&action=index&userId=" . $encrypted_id . "." . $salt);
+                $_SESSION['encrypted_id'] = $encrypted_id . "." . $salt;
+                header("Location: ?controller=users&action=index");
             } else {
-                header("Location: ?controller=pages&action=home&status=passwordIsInvalid");
+                $_SESSION['status'] = "passwordIsInvalid";
+                header("Location: ?controller=pages&action=home");
             }
         } else {
-            header("Location: ?controller=pages&action=home&status=notHasUser");
+            $_SESSION['status'] = "notHasUser";
+            header("Location: ?controller=pages&action=home");
         }
     }
 }
