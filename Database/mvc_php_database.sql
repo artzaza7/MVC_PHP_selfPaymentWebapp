@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2023 at 06:32 AM
+-- Generation Time: Jul 11, 2023 at 06:00 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `expenses` (
   `id` int(11) NOT NULL,
-  `money` float NOT NULL DEFAULT 0,
+  `money` float DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `type_expenses_id` int(11) DEFAULT NULL,
   `created_time` timestamp NOT NULL DEFAULT current_timestamp()
@@ -54,7 +54,10 @@ INSERT INTO `type_expenses` (`id`, `name`) VALUES
 (1, 'อาหารเช้า'),
 (2, 'อาหารกลางวัน'),
 (3, 'อาหารเย็น'),
-(4, 'ของกินเล่น');
+(4, 'ของกินเล่น'),
+(5, 'ค่าน้ำมัน'),
+(6, 'ค่าเดิมทาง'),
+(7, 'ค่าซักเสื้อผ้า');
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,7 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `type_expenses`
 --
 ALTER TABLE `type_expenses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`

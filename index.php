@@ -68,8 +68,8 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             </div>
         </div>
     </header> -->
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center w-100 px-0 py-0 mx-0 my-0"
-        style="min-height: 80vh;">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center px-0 py-0 mx-0 my-0"
+        style="min-height: 80vh; min-width: 100vw">
         <?php
         require_once("routes.php");
         ?>
